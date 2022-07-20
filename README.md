@@ -10,7 +10,13 @@ helm repo update
 ```
 
 ```shell
-helm install kyverno-policies kyverno/kyverno-policies -n kyverno --create-namespace
+helm install kyverno kyverno/kyverno-policies -n kyverno --create-namespace
+```
+
+Alternatively install directly with `kubectl create -f`: 
+
+```shell
+kubectl create -f https://raw.githubusercontent.com/kyverno/kyverno/main/config/install.yaml
 ```
 
 ## Policy Reporter
