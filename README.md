@@ -45,3 +45,5 @@ helm repo update
 helm upgrade --install policy-reporter policy-reporter/policy-reporter --create-namespace -n policy-reporter --set ui.enabled=true
 
 ```
+
+<img width="1655" alt="image" src="https://user-images.githubusercontent.com/85744785/179994006-539fe6d9-af16-4092-a67b-d18da10c6281.png">
