@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/group.name: dev-bk-blue-internet-facing
+    #alb.ingress.kubernetes.io/conditions.ci-cd-nth-service: >
+    #  [{"field":"source-ip","sourceIpConfig":{"values":["192.168.0.0/16",
+    # "172.16.0.0/16"]}}]
+  name: test
+spec:
+  rules:
+    - host: foo.example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: foo
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+

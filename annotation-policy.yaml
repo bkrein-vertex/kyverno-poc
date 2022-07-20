@@ -1,0 +1,25 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: check-alb-subnet-ip-annotation
+spec:
+  validationFailureAction: audit
+  rules:
+    - name: check-subnet-id-annotation
+      match:
+        resources:
+          kinds:
+            - Ingress
+          annotations:
+            alb.ingress.kubernetes.io/group.name: "*internet-facing"
+      exclude:
+        resources:
+          # Don't enforce this policy in the following namespaces
+          namespaces:
+            - test
+      validate:
+        message: "alb.ingress.kubernetes.io/conditions.<service> annotation must be set on any internet-facing Ingress"
+        pattern:
+          metadata:
+            annotations:
+              "alb.ingress.kubernetes.io/conditions.*": "*"
